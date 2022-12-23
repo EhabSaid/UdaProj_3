@@ -11,16 +11,16 @@ commands:
               unzip awscliv2.zip
               sudo ./aws/install
 
-    install_ansible:
-      description: Install Ansible v2
-      steps:
-        - run:
-            name: Install Ansible v2
-            comand: |
-              sudo apt-get update
-              sudo apt-get install software-properties-common
-              sudo add-apt-repository --yes --update ppa:ansible/ansible
-              sudo apt-get install ansible
+    # install_ansible:
+    #   description: Install Ansible v2
+    #   steps:
+    #     - run:
+    #         name: Install Ansible v2
+    #         comand: |
+    #           sudo apt update
+    #           sudo apt install software-properties-common
+    #           sudo add-apt-repository --yes --update ppa:ansible/ansible
+    #           sudo apt install ansible
 
 
 #   destroy-environment:
@@ -155,7 +155,6 @@ jobs:
     steps:
       - checkout
       - install_awscli
-      - install_ansible
       - run:
           name: Ensure back-end infrastructure exists
           command: |

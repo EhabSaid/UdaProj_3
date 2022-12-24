@@ -7,6 +7,7 @@ commands:
         - run:
             name: Install AWS CLI v2
             command: |
+              sudo apt update --yes
               curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
               unzip awscliv2.zip
               sudo ./aws/install
@@ -207,6 +208,7 @@ jobs:
       - run:
           name: Configure Server
           command: |
+            sudo apt update --yes
             cd .circleci/ansible
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml

@@ -40,4 +40,6 @@ Resources:
           !Sub |
             #!/bin/bash
             sudo apt update -y
+            # sudo apt install nodejs
+            # sudo apt install ansible
 

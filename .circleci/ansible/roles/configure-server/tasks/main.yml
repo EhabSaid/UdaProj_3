@@ -1,7 +1,7 @@
 ---
-- name: "Add Node.js from Nodesource"
+- name: "Add Node.js from Nodesource Task"
   become: true
-  shell: |
+  command: |
     curl --silent --location https://deb.nodesource.com/setup_13.x | sudo -E bash -
     # curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
     # sudo apt install -y nodejs

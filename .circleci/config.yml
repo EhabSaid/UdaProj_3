@@ -23,6 +23,19 @@ commands:
               sudo add-apt-repository --yes --update ppa:ansible/ansible
               sudo apt install ansible
 
+    install_nodejs:  
+      description: Install Node.js 13.8.0
+      steps:
+        - run:
+            name: Install Node.js 13.8.0
+            command: |
+              # Install Node.js LTS version as our base Node.js version
+              curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+              sudo apt install -y nodejs
+              # Use n version manager to use Node.js v13.8.0
+              sudo npm install --global n
+              sudo n 13.8.0
+
 
     destroy_environment:
       description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
@@ -203,6 +216,7 @@ jobs:
       - checkout
       - install_awscli
       - install_ansible
+      - install_nodejs 
       - add_ssh_keys:
           fingerprints: ["19:05:37:ab:92:52:f2:f0:82:d2:65:95:d6:bd:c4:99"]
       - attach_workspace:

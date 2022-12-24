@@ -23,20 +23,20 @@ commands:
               sudo apt install ansible
 
 
-  destroy-environment:
-    description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
-    parameters:
-      Workflow_ID:
-        type: string
-        default: ${CIRCLE_WORKFLOW_ID:0:7}  
-    steps:
-      - run:
-          name: Destroy environments
-          when: on_fail
-          command: |
-            aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.Workflow_ID >>
-            aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
-            aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.Workflow_ID >>
+    destroy_environment:
+      description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
+      parameters:
+        Workflow_ID:
+          type: string
+          default: ${CIRCLE_WORKFLOW_ID:0:7}  
+      steps:
+        - run:
+            name: Destroy environments
+            when: on_fail
+            command: |
+              aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.Workflow_ID >>
+              aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
+              aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.Workflow_ID >>
 
 #   revert-migrations:
 #     description: Revert the last migration if successfully run in the current workflow.
@@ -192,7 +192,7 @@ jobs:
             - project/.circleci/ansible/inventory.txt
       # Here's where you will add some code to rollback on failure      
 
-      - destroy-environment
+      - destroy_environment
 
   configure-infrastructure:
     docker:
@@ -211,7 +211,7 @@ jobs:
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
       # Here's where you will add some code to rollback on failure   
-      - destroy-environment
+      - destroy_environment
 
 
 #   run-migrations:
@@ -345,9 +345,8 @@ workflows:
           filters:
             branches:
               only: [master]
-
-      # - configure-infrastructure:
-      #     requires: [deploy-infrastructure]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
       # - run-migrations:
       #     requires: [configure-infrastructure]
       # - deploy-frontend:

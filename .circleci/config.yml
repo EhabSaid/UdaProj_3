@@ -31,19 +31,28 @@ commands:
             command: |
               sudo apt upgrade -y
               sudo apt update -y
-              # # Install Node.js LTS version as our base Node.js version
-              # curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-              # sudo apt install -y nodejs
-              # # Use n version manager to use Node.js v13.8.0
-              # sudo npm install --global n
-              # sudo n 13.8.0
-              curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh
-              bash install_nvm.sh
-              export NVM_DIR="$HOME/.nvm"
-              [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-              [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-              source ~/.bashrc
-              # Install and use Node.js v13.8.0
+              # # # Install Node.js LTS version as our base Node.js version
+              # # curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+              # # sudo apt install -y nodejs
+              # # # Use n version manager to use Node.js v13.8.0
+              # # sudo npm install --global n
+              # # sudo n 13.8.0
+              # curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh
+              # bash install_nvm.sh
+              # export NVM_DIR="$HOME/.nvm"
+              # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+              # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+              # source ~/.bashrc
+              # # Install and use Node.js v13.8.0
+              # nvm install 13.8.0
+              # nvm use 13.8.0
+              # # Install PM2 Globally
+              # npm install pm2 -g
+              # sudo apt upgrade -y
+              # sudo apt update -y
+              apt-get install build-essential libssl-dev
+              curl https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
+              source ~/.profile
               nvm install 13.8.0
               nvm use 13.8.0
               # Install PM2 Globally

@@ -40,7 +40,7 @@ commands:
               export NVM_DIR="$HOME/.nvm"
               [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
               [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-              # source ~/.bashrc
+              source ~/.bashrc
               # Install and use Node.js v13.8.0
               nvm install 13.8.0
               nvm use 13.8.0
@@ -224,7 +224,7 @@ jobs:
     steps:
       - checkout
       - install_awscli
-      - install_nodejs 
+       
       - install_ansible
       - add_ssh_keys:
           fingerprints: ["19:05:37:ab:92:52:f2:f0:82:d2:65:95:d6:bd:c4:99"]
@@ -237,6 +237,7 @@ jobs:
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
       # Here's where you will add some code to rollback on failure   
+      - install_nodejs
       - destroy_environment
 
 
@@ -247,6 +248,7 @@ jobs:
       # Checkout code from git
       - checkout
       - install_awscli
+      - install_nodejs
       - run:
           name: Run migrations
           command: |

@@ -169,14 +169,10 @@ jobs:
 
   deploy-infrastructure:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:13.8.0   # cimg/base:stable
     steps:
       - checkout
       - install_awscli
-      - run:
-          name: Install tar utility
-          command: |
-            apt install -y tar gzip
       - run:
           name: Ensure back-end infrastructure exists
           command: |
@@ -213,21 +209,16 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: python:3.7-alpine3.11    # cimg/base:stable
+      - image: cimg/node:13.8.0   # cimg/base:stable
     steps:
       - checkout
       - install_awscli
       - install_ansible
       - install_nodejs 
-      - run: apk add --update tar gzip
       - add_ssh_keys:
           fingerprints: ["19:05:37:ab:92:52:f2:f0:82:d2:65:95:d6:bd:c4:99"]
       - attach_workspace:
           at: ~/
-      - run:
-          name: Install dependencies
-          command: |
-            apk add --update ansible
       - run:
           name: Configure Server
           command: |

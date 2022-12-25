@@ -47,8 +47,8 @@ commands:
               nvm use 13.8.0
               # Install PM2 Globally
               npm install pm2 -g
-              sudo apt upgrade
-              sudo apt update
+              sudo apt upgrade -y
+              sudo apt update -y
 
 # sudo systemctl status node_exporter
     destroy_environment:

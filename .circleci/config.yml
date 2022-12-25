@@ -29,6 +29,7 @@ commands:
         - run:
             name: Install Node.js 13.8.0
             command: |
+              sudo apt update
               # # Install Node.js LTS version as our base Node.js version
               # curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
               # sudo apt install -y nodejs
@@ -46,6 +47,8 @@ commands:
               nvm use 13.8.0
               # Install PM2 Globally
               npm install pm2 -g
+              sudo apt upgrade
+              sudo apt update
 
 # sudo systemctl status node_exporter
     destroy_environment:

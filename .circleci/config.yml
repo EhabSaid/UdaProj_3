@@ -44,7 +44,7 @@ commands:
             name: "Install PM2 Globally"
             command:
               npm install pm2 -g
-              $ pm2 start app.js
+              pm2 start app.js
 
 
     destroy_environment:

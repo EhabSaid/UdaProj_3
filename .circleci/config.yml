@@ -35,6 +35,11 @@ commands:
               # Use n version manager to use Node.js v13.8.0
               sudo npm install --global n
               sudo n 13.8.0
+              - name: "Install PM2 Globally"
+        - name: "Install PM2 Globally"
+        - npm:
+            name: pm2
+            global: yes
 
 
     destroy_environment:
@@ -215,6 +220,17 @@ jobs:
       - install_awscli
       - install_nodejs 
       - install_ansible
+      - environment:
+          TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"
+          TYPEORM_ENTITIES: "{{ lookup('env', 'TYPEORM_ENTITIES')}}"
+          TYPEORM_HOST: "{{ lookup('env', 'TYPEORM_HOST')}}"
+          TYPEORM_PORT: 5432
+          TYPEORM_USERNAME: "{{ lookup('env', 'TYPEORM_USERNAME')}}"
+          TYPEORM_PASSWORD: "{{ lookup('env', 'TYPEORM_PASSWORD')}}"
+          TYPEORM_DATABASE: "{{ lookup('env', 'TYPEORM_DATABASE')}}"
+          TYPEORM_MIGRATIONS: "{{ lookup('env', 'TYPEORM_MIGRATIONS')}}"
+          TYPEORM_MIGRATIONS_DIR: "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}"
+
       - add_ssh_keys:
           fingerprints: ["19:05:37:ab:92:52:f2:f0:82:d2:65:95:d6:bd:c4:99"]
       - attach_workspace:
